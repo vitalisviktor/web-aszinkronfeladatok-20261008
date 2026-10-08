@@ -36,11 +36,10 @@
         document.getElementById("reflex").addEventListener("click", () => {
             if(nyomhato){
                 reflexido = Date.now() - startido;
-                console.log(reflexido);
                 eredmenyszoveg.textContent = reflexido + "ms a reakció időd";
+                nyomhato = false;
             }
             else{
-                console.log("a");
                 eredmenyszoveg.textContent = "Túl hamar nyomtad meg!";
                 clearTimeout(reflexcountdown);
             }
