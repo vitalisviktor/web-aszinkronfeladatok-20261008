@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="loading"></h1>
+    <button id="retry">Retry</button>
+
+    <script>
+        const loadingszoveg = document.getElementById("loading");
+        let loadinganimation;
+        let failtimeout;
+        function loadingstart(){
+            clearInterval(loadinganimation);
+            clearTimeout(failtimeout);
+            failtimeout = setTimeout(() => {
+            loadingszoveg.textContent = "Loading Failed"
+            clearInterval(loadinganimation);
+            }, 15000);
+            loadingszoveg.textContent = "Loading."
+            let pontok = 1;
+            loadinganimation = setInterval(() => {
+                loadingszoveg.textContent += ".";
+                pontok += 1;
+                if(pontok == 4){
+            loadingszoveg.textContent = "Loading."
+                    pontok = 1;
+                }
+            }, 1000);
+        }
+        document.getElementById("retry").addEventListener("click", loadingstart);
+        loadingstart();
+    </script>
+</body>
+</html>

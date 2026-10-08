@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="stopcolor">Stop Color Change</button>
+<script>
+    const colors = [
+    "green",
+    "red",
+    "yellow",
+    "blue",
+    "pink",
+    "white",
+    "orange"
+];
+
+function randomColor(){
+    return colors[Math.round(Math.random()*6)];
+};
+
+document.body.style.backgroundColor = randomColor();
+
+const colorchange = setInterval(() => {
+document.body.style.backgroundColor = randomColor();
+},10000);
+
+document.getElementById("stopcolor").addEventListener("click", () => {
+clearInterval(colorchange);
+});
+
+</script>
+</body>
+</html>

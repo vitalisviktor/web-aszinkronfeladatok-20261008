@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="start">Reflex Teszt Start</button>
+    <br>
+    <button id="reflex">Nyomj meg amikor változik a hattér!!</button>
+    <br>
+    <p id="eredmeny"></p>
+
+    <script>
+        let nyomhato;
+        let reflexido;
+        let reflexcountdown;
+        let startido;
+        const eredmenyszoveg = document.getElementById("eredmeny");
+        document.getElementById("start").addEventListener("click", () => {
+            reflexido = 0;
+            nyomhato = false;
+            document.body.style.backgroundColor = "white"
+            eredmenyszoveg.textContent = "";
+            eredmenyszoveg.style.color = "black";
+
+            reflexcountdown = setTimeout(() => {
+                document.body.style.backgroundColor = "red"
+            eredmenyszoveg.style.color = "white";
+
+                nyomhato = true;
+                startido = Date.now();
+            }, Math.round(Math.random() * 5000)+ 5000);
+        });
+        document.getElementById("reflex").addEventListener("click", () => {
+            if(nyomhato){
+                reflexido = Date.now() - startido;
+                console.log(reflexido);
+                eredmenyszoveg.textContent = reflexido + "ms a reakció időd";
+            }
+            else{
+                console.log("a");
+                eredmenyszoveg.textContent = "Túl hamar nyomtad meg!";
+                clearTimeout(reflexcountdown);
+            }
+        });
+    </script>
+</body>
+</html>
